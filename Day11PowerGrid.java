@@ -1,4 +1,4 @@
-public class Advent11PowerGrid {
+public class Day11PowerGrid {
 
     public static void main(String[] args) {
 
