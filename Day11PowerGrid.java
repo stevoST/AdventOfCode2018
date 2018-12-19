@@ -4,13 +4,13 @@ public class Day11PowerGrid {
 
         int coordinateX = 21;
         int coordinateY = 61;
+        int serialNumber = 42;
         coordinateX--;
         coordinateY--;
 
         int powerLevel=0;
         int totalPower=0;
         int maximumPower=0;
-        int serialNumber = 42;
         int[][] powerGrid = new int[300][300];
 
         for(int i=0;i<300;i++){
@@ -27,21 +27,23 @@ public class Day11PowerGrid {
             }
         }
 
-        for(int x=0;x<300;x++) {
-            for (int y = 0; y < 300; y++) {
+        for(int x=0;x<297;x++) {
+            for (int y = 0; y < 297; y++) {
 
                 for (int j = 0; j < 3; j++) {
                     for (int i = 0; i < 3; i++) {
+//                        if(x==299 && y==299){System.out.println(powerGrid[coordinateX + i][coordinateY + j]);}
 //                        System.out.print(powerGrid[coordinateX + i][coordinateY + j] + " ");
-                        totalPower += powerGrid[coordinateX + i][coordinateY + j];
+                        totalPower += powerGrid[x + i][y + j];
                     }
 //                System.out.println("");
                 }
-            if (x==0 && y==0){maximumPower = totalPower;}
-            else if (totalPower>maximumPower) {maximumPower = totalPower;}
+            if (totalPower>maximumPower) {maximumPower = totalPower;}
+                System.out.println(totalPower);
+
             }
         }
-        System.out.println("TotalPower is: " + maximumPower);
+        System.out.println("Maximum Power is: " + maximumPower);
 //        System.out.println("Check: "+(((((coordinateX+11)*(coordinateY+1))+serialInput)*(coordinateX+11))/100)%10);
     }
 }
