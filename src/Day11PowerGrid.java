@@ -2,14 +2,16 @@ public class Day11PowerGrid {
 
     public static void main(String[] args) {
 
-        int coordinateX = 21;
-        int coordinateY = 61;
-        int serialNumber = 42;
+        int coordinateX=21;
+        int coordinateY=53;
+        int maxPowerCoordinateX = 0;
+        int maxPowerCoordinateY = 0;
+        int serialNumber = 6548;
+
         coordinateX--;
         coordinateY--;
 
         int powerLevel = 0;
-        int totalPower = 0;
         int maximumPower = 0;
         int[][] powerGrid = new int[300][300];
 
@@ -29,26 +31,32 @@ public class Day11PowerGrid {
 
         for (int x = 0; x < 297; x++) {
             for (int y = 0; y < 297; y++) {
+                int totalPower = 0;
 
                 for (int j = 0; j < 3; j++) {
-                    System.out.println("");
+//                    System.out.println("");
                     for (int i = 0; i < 3; i++) {
-//                        if(x==299 && y==299){System.out.println(powerGrid[coordinateX + i][coordinateY + j]);}
-                        System.out.print(powerGrid[x + i][y + j] + " ");
+                        if(x==coordinateX && y==coordinateY){System.out.print(powerGrid[coordinateX + i][coordinateY + j]+" ");}
+//                        System.out.print(powerGrid[x + i][y + j] + " ");
                         totalPower += powerGrid[x + i][y + j];
                     }
 
-                    System.out.println("");
+                    if(x==coordinateX && y==coordinateY){System.out.println("");}
+//                    System.out.println("");
                 }
-                System.out.print("-------");
+//                System.out.println("-------");
+//                System.out.println(totalPower);
+//                System.out.println("-------");
                 if (totalPower > maximumPower) {
                     maximumPower = totalPower;
+                    maxPowerCoordinateX = x+1;
+                    maxPowerCoordinateY = y+1;
                 }
 //                System.out.println(totalPower);
 
             }
         }
-        System.out.println("Maximum Power is: " + maximumPower);
+        System.out.println("Maximum Power is: " + maximumPower + " with coordinate X: " + maxPowerCoordinateX + " and cooridinate Y: " + maxPowerCoordinateY);
 //        System.out.println("Check: "+(((((coordinateX+11)*(coordinateY+1))+serialInput)*(coordinateX+11))/100)%10);
     }
 }
