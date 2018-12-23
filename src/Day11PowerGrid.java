@@ -2,19 +2,21 @@ public class Day11PowerGrid {
 
     public static void main(String[] args) {
 
-        int coordinateX=21;
-        int coordinateY=53;
+        int coordinateX = 0;
+        int coordinateY = 0;
         int maxPowerCoordinateX = 0;
         int maxPowerCoordinateY = 0;
-        int serialNumber = 6548;
+        int serialNumber = 42;
+        int gridSize = 3;
 
         coordinateX--;
         coordinateY--;
 
-        int powerLevel = 0;
-        int maximumPower = 0;
+        int powerLevel;
+        int maximumPower = -5000;
         int[][] powerGrid = new int[300][300];
 
+        //generating power grid
         for (int i = 0; i < 300; i++) {
             for (int j = 0; j < 300; j++) {
                 int rackID;
@@ -29,19 +31,28 @@ public class Day11PowerGrid {
             }
         }
 
-        for (int x = 0; x < 297; x++) {
-            for (int y = 0; y < 297; y++) {
+        //loops for searching in whole power grid
+        for (int x = 0; x < 300 - gridSize; x++) {
+            for (int y = 0; y < 300 - gridSize; y++) {
                 int totalPower = 0;
 
-                for (int j = 0; j < 3; j++) {
+                // loops for evaluate matrix by coordinate and grid(matrix) size
+                for (int j = 0; j < gridSize; j++) {
 //                    System.out.println("");
-                    for (int i = 0; i < 3; i++) {
-                        if(x==coordinateX && y==coordinateY){System.out.print(powerGrid[coordinateX + i][coordinateY + j]+" ");}
+                    for (int i = 0; i < gridSize; i++) {
+                        if (x == coordinateX && y == coordinateY) {
+                            System.out.print(powerGrid[coordinateX + i][coordinateY + j] + " ");
+                        }
 //                        System.out.print(powerGrid[x + i][y + j] + " ");
+//                        if(i==0 && j==0){
+//                            totalPower=powerGrid[x + i][y + j];
+//                        }
                         totalPower += powerGrid[x + i][y + j];
                     }
 
-                    if(x==coordinateX && y==coordinateY){System.out.println("");}
+                    if (x == coordinateX && y == coordinateY) {
+                        System.out.println("");
+                    }
 //                    System.out.println("");
                 }
 //                System.out.println("-------");
@@ -49,8 +60,8 @@ public class Day11PowerGrid {
 //                System.out.println("-------");
                 if (totalPower > maximumPower) {
                     maximumPower = totalPower;
-                    maxPowerCoordinateX = x+1;
-                    maxPowerCoordinateY = y+1;
+                    maxPowerCoordinateX = x + 1;
+                    maxPowerCoordinateY = y + 1;
                 }
 //                System.out.println(totalPower);
 
