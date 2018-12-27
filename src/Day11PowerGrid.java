@@ -2,12 +2,12 @@ public class Day11PowerGrid {
 
     public static void main(String[] args) {
 
-        int coordinateX = 0;
-        int coordinateY = 0;
+        int coordinateX = 1;
+        int coordinateY = 1;
         int maxPowerCoordinateX = 0;
         int maxPowerCoordinateY = 0;
-        int serialNumber = 42;
-        int gridSize = 3;
+        int serialNumber = 6548;
+        int maxGridSize = 0;
 
         coordinateX--;
         coordinateY--;
@@ -31,43 +31,47 @@ public class Day11PowerGrid {
             }
         }
 
-        //loops for searching in whole power grid
-        for (int x = 0; x < 300 - gridSize; x++) {
-            for (int y = 0; y < 300 - gridSize; y++) {
-                int totalPower = 0;
+        for(int gridSize = 0; gridSize < 300; gridSize++) {
 
-                // loops for evaluate matrix by coordinate and grid(matrix) size
-                for (int j = 0; j < gridSize; j++) {
+            //loops for searching in whole power grid
+            for (int x = 0; x < 300 - gridSize; x++) {
+                for (int y = 0; y < 300 - gridSize; y++) {
+                    int totalPower = 0;
+
+                    // loops for evaluate matrix by coordinate and grid(matrix) size
+                    for (int j = 0; j < gridSize; j++) {
 //                    System.out.println("");
-                    for (int i = 0; i < gridSize; i++) {
-                        if (x == coordinateX && y == coordinateY) {
-                            System.out.print(powerGrid[coordinateX + i][coordinateY + j] + " ");
-                        }
+                        for (int i = 0; i < gridSize; i++) {
+//                            if (x == coordinateX && y == coordinateY) {
+//                                System.out.print(powerGrid[coordinateX + i][coordinateY + j] + " ");
+//                            }
 //                        System.out.print(powerGrid[x + i][y + j] + " ");
-//                        if(i==0 && j==0){
-//                            totalPower=powerGrid[x + i][y + j];
+                            if (i == 0 && j == 0) {
+                                totalPower = powerGrid[x + i][y + j];
+                            }
+                            totalPower += powerGrid[x + i][y + j];
+                        }
+
+//                        if (x == coordinateX && y == coordinateY) {
+//                            System.out.println("");
 //                        }
-                        totalPower += powerGrid[x + i][y + j];
-                    }
-
-                    if (x == coordinateX && y == coordinateY) {
-                        System.out.println("");
-                    }
 //                    System.out.println("");
-                }
+                    }
 //                System.out.println("-------");
 //                System.out.println(totalPower);
 //                System.out.println("-------");
-                if (totalPower > maximumPower) {
-                    maximumPower = totalPower;
-                    maxPowerCoordinateX = x + 1;
-                    maxPowerCoordinateY = y + 1;
-                }
+                    if (totalPower > maximumPower) {
+                        maximumPower = totalPower;
+                        maxPowerCoordinateX = x + 1;
+                        maxPowerCoordinateY = y + 1;
+                        maxGridSize = gridSize;
+                    }
 //                System.out.println(totalPower);
 
+                }
             }
         }
-        System.out.println("Maximum Power is: " + maximumPower + " with coordinate X: " + maxPowerCoordinateX + " and cooridinate Y: " + maxPowerCoordinateY);
+        System.out.println("Maximum Power is: " + maximumPower + " with coordinate X: " + maxPowerCoordinateX + " and cooridinate Y: " + maxPowerCoordinateY + " with Grid size: " + maxGridSize);
 //        System.out.println("Check: "+(((((coordinateX+11)*(coordinateY+1))+serialInput)*(coordinateX+11))/100)%10);
     }
 }
