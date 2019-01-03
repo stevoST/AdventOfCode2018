@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -259,14 +260,24 @@ public class Day02StringChecksum {
         int threeSameCharsInString = 0;
         int twoSameCharsInString = 0;
 
-        for (int i =0;i<inputArray.length;i++){
-            int charAt = 0;
-            Set<Character> uniqueIdCharacter = new HashSet<Character>();
+//        for (int i =0;i<inputArray.length;i++){
+            int charPosition = 0;
+            int duplicateCharacter = 0;
+            inputArray[1] = "asdfghhhha";
 
-            while(charAt<inputArray[i].length()){
-                uniqueIdCharacter.add(inputArray[i].charAt(charAt));
-                charAt++;
+            Set<Character> uniqueIdCharacter = new HashSet<Character>();
+            HashMap<Character,Integer> charCount = new HashMap<Character,Integer>();
+
+            while(charPosition<inputArray[1].length()){
+                if(uniqueIdCharacter.add(inputArray[1].charAt(charPosition))){
+                    System.out.println("Pismeno bolo unikatne");
+                } else {
+                    charCount.put(inputArray[1].charAt(charPosition),needToThinkSomethingHere);
+                    duplicateCharacter++;
+                }
+                charPosition++;
             }
-        }
+        System.out.println(duplicateCharacter);
+//        }
     }
 }
