@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Day02StringChecksum {
@@ -268,20 +267,18 @@ public class Day02StringChecksum {
 
             Set<Character> uniqueIdCharacter = new HashSet<Character>();
             HashMap<Character,Integer> duplicatedChars = new HashMap<Character,Integer>();
-            Map<Character,Integer> triplicatedChars = new HashMap<Character,Integer>();
 
             while(charPosition<inputArray[1].length()){
-                if(uniqueIdCharacter.add(inputArray[1].charAt(charPosition))){
-                    System.out.println("Pismeno bolo unikatne");
+                if(!uniqueIdCharacter.contains(inputArray[1].charAt(charPosition))){
+                    uniqueIdCharacter.add(inputArray[1].charAt(charPosition));
                 } else if(duplicatedChars.containsKey(inputArray[1].charAt(charPosition))) {
-                    triplicatedChars.put(inputArray[1].charAt(charPosition),3);
+                    duplicatedChars.put(inputArray[1].charAt(charPosition),3);
                 } else {
                     duplicatedChars.put(inputArray[1].charAt(charPosition),2);
-                    duplicateCharacter++;
                 }
                 charPosition++;
             }
-        System.out.println(duplicateCharacter);
+        System.out.println(duplicatedChars);
 //        }
     }
 }
