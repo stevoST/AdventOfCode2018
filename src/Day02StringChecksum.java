@@ -257,28 +257,34 @@ public class Day02StringChecksum {
                 "ovfqlbidheyujztoswxyckcnap";
 
         String[] inputArray = input.split("\n");
-        int threeSameCharsInString = 0;
-        int twoSameCharsInString = 0;
+        int containsTwice = 0;
+        int containsThrice = 0;
 
-//        for (int i =0;i<inputArray.length;i++){
+        for (int i =0;i<inputArray.length;i++){
             int charPosition = 0;
-            int duplicateCharacter = 0;
-            inputArray[1] = "asdfghhhhassss";
 
             Set<Character> uniqueIdCharacter = new HashSet<Character>();
             HashMap<Character,Integer> duplicatedChars = new HashMap<Character,Integer>();
 
-            while(charPosition<inputArray[1].length()){
-                if(!uniqueIdCharacter.contains(inputArray[1].charAt(charPosition))){
-                    uniqueIdCharacter.add(inputArray[1].charAt(charPosition));
-                } else if(duplicatedChars.containsKey(inputArray[1].charAt(charPosition))) {
-                    duplicatedChars.put(inputArray[1].charAt(charPosition),3);
+            while(charPosition<inputArray[i].length()){
+                if(!uniqueIdCharacter.contains(inputArray[i].charAt(charPosition))){
+                    uniqueIdCharacter.add(inputArray[i].charAt(charPosition));
+                } else if(duplicatedChars.containsKey(inputArray[i].charAt(charPosition))) {
+                    duplicatedChars.put(inputArray[i].charAt(charPosition),3);
                 } else {
-                    duplicatedChars.put(inputArray[1].charAt(charPosition),2);
+                    duplicatedChars.put(inputArray[i].charAt(charPosition),2);
                 }
                 charPosition++;
             }
-        System.out.println(duplicatedChars);
-//        }
+        if(duplicatedChars.containsValue(2))
+        {
+            containsTwice++;
+        }
+        if(duplicatedChars.containsValue(3))
+        {
+            containsThrice++;
+        }
+        }
+        System.out.println(containsTwice*containsThrice);
     }
 }
