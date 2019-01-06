@@ -5,7 +5,7 @@ public class Day02part2StringCompare {
     public static void main(String[] args) {
 
         String input = "ovfclbidieyujztrswxmckgnaw\n" +
-                "ovfclbidieyujztrswxmckgnaw\n" +
+//                "ovfclbidieyujztrswxmckgnaw\n" +
                 "pmfqlbimheyujztrswxmckgnap\n" +
                 "ovfqlbidhetujztrswxmcfgnas\n" +
                 "gvfqebddheyujztrswxmckgnap\n" +
@@ -257,16 +257,20 @@ public class Day02part2StringCompare {
                 "ovfqlbidheyujztoswxyckcnap";
 
         String[] inputArray = input.split("\n");
-        Set<StringBuilder> uniqueID = new HashSet<>();
 
-        for (int i=0;i<inputArray.length;i++){
-            StringBuilder tempString = new StringBuilder(inputArray[i]);
-            tempString=tempString.deleteCharAt(0);
+        for (int j = 0; j < inputArray[0].length(); j++) {
+            Set<String> uniqueID = new HashSet<>();
 
-            if (uniqueID.contains(tempString)){
-                System.out.println(tempString);
-            } else {
-                uniqueID.add(tempString);
+
+            for (int i = 0; i < inputArray.length; i++) {
+                StringBuilder tempString = new StringBuilder(inputArray[i]);
+                String idWithoutChar = tempString.deleteCharAt(0).toString();
+
+                if (uniqueID.contains(idWithoutChar)) {
+                    System.out.println(idWithoutChar);
+                } else {
+                    uniqueID.add(idWithoutChar);
+                }
             }
         }
     }
