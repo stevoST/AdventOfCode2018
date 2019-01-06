@@ -255,6 +255,13 @@ public class Day02part2StringCompare {
                 "ovfqcbidhtyujztrswxmckqnap\n" +
                 "ozfglbidheyujzvrswxmckgnap\n" +
                 "ovfqlbidheyujztoswxyckcnap";
+        String testInput = "abcde\n" +
+                "fghij\n" +
+                "klmno\n" +
+                "pqrst\n" +
+                "fguij\n" +
+                "axcye\n" +
+                "wvxyz";
 
         String[] inputArray = input.split("\n");
 
@@ -264,7 +271,7 @@ public class Day02part2StringCompare {
 
             for (int i = 0; i < inputArray.length; i++) {
                 StringBuilder tempString = new StringBuilder(inputArray[i]);
-                String idWithoutChar = tempString.deleteCharAt(0).toString();
+                String idWithoutChar = tempString.deleteCharAt(j).toString();
 
                 if (uniqueID.contains(idWithoutChar)) {
                     System.out.println(idWithoutChar);
