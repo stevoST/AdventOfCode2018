@@ -1,7 +1,5 @@
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class Day02StringChecksum {
     public static void main(String[] args) {
@@ -264,32 +262,31 @@ public class Day02StringChecksum {
         for (int i = 0; i < inputArray.length; i++) {
             int charPosition = 0;
 
-            Set<Character> uniqueIdCharacter = new HashSet<Character>();
-            Map<Character, Integer> duplicatedChars = new HashMap<Character, Integer>();
+            Map<Character, Integer> duplicatedCharsCount = new HashMap<Character, Integer>();
 
             while (charPosition < inputArray[i].length()) {
 
-                if (duplicatedChars.containsKey(inputArray[i].charAt(charPosition))) {
-                    int numberOfCharOccurances = duplicatedChars.get(inputArray[i].charAt(charPosition));
+                if (duplicatedCharsCount.containsKey(inputArray[i].charAt(charPosition))) {
+                    int numberOfCharOccurances = duplicatedCharsCount.get(inputArray[i].charAt(charPosition));
                     if (numberOfCharOccurances == 3) {
-                        duplicatedChars.put(inputArray[i].charAt(charPosition), 4);
+                        duplicatedCharsCount.put(inputArray[i].charAt(charPosition), 4);
                     }
                     if (numberOfCharOccurances == 2) {
-                        duplicatedChars.put(inputArray[i].charAt(charPosition), 3);
+                        duplicatedCharsCount.put(inputArray[i].charAt(charPosition), 3);
                     }
                     if (numberOfCharOccurances == 1) {
-                        duplicatedChars.put(inputArray[i].charAt(charPosition), 2);
+                        duplicatedCharsCount.put(inputArray[i].charAt(charPosition), 2);
                     }
                 } else {
-                    duplicatedChars.put(inputArray[i].charAt(charPosition), 1);
+                    duplicatedCharsCount.put(inputArray[i].charAt(charPosition), 1);
                 }
                 charPosition++;
             }
 
-            if (duplicatedChars.containsValue(2)) {
+            if (duplicatedCharsCount.containsValue(2)) {
                 containsTwice++;
             }
-            if (duplicatedChars.containsValue(3)) {
+            if (duplicatedCharsCount.containsValue(3)) {
                 containsThrice++;
             }
         }
