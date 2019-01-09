@@ -1405,8 +1405,19 @@ public class Day03FabricGrid {
 
         String inputTest = "#1 @ 53,238: 26x24";
 
-        char fabGrid[][] = new char[1000][1000];
-        String id = input.substring(input.indexOf('#')+1,input.indexOf('@')).trim();
+        String inputArray[] = input.split("\n");
+
+        String fabGrid[][] = new String[1000][1000];
+        for(int i = 0;i<inputArray.length;i++){
+            String id = inputArray[i].substring(inputArray[i].indexOf('#')+1,inputArray[i].indexOf('@')).trim();
+            int yCoordinate = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('@')+1,inputArray[i].indexOf(',')).trim());
+            int xCoordinate = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(',')+1,inputArray[i].indexOf(':')).trim());
+            int xAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(':')+1,inputArray[i].indexOf('x')).trim());
+            int yAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('x')+1).trim());
+
+            fabGrid[xCoordinate][yCoordinate] = id;
         System.out.println("test");
+        }
+
     }
 }
