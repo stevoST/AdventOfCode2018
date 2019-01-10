@@ -1404,19 +1404,34 @@ public class Day03FabricGrid {
                 "#1401 @ 432,243: 19x17";
 
         String inputTest = "#1 @ 53,238: 26x24";
+        String inputTest2 = "#1 @ 1,3: 4x4\n" +
+                "#2 @ 3,1: 4x4\n" +
+                "#3 @ 5,5: 2x2";
 
-        String inputArray[] = input.split("\n");
+        String inputArray[] = inputTest2.split("\n");
 
-        String fabGrid[][] = new String[1000][1000];
-        for(int i = 0;i<inputArray.length;i++){
-            String id = inputArray[i].substring(inputArray[i].indexOf('#')+1,inputArray[i].indexOf('@')).trim();
-            int yCoordinate = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('@')+1,inputArray[i].indexOf(',')).trim());
-            int xCoordinate = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(',')+1,inputArray[i].indexOf(':')).trim());
-            int xAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(':')+1,inputArray[i].indexOf('x')).trim());
-            int yAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('x')+1).trim());
+        String fabGrid[][] = new String[10][10];
 
-            fabGrid[xCoordinate][yCoordinate] = id;
-        System.out.println("test");
+        for (int i = 0; i < inputArray.length; i++) {
+            String id = inputArray[i].substring(inputArray[i].indexOf('#') + 1, inputArray[i].indexOf('@')).trim();
+            int yCoordinate = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('@') + 1, inputArray[i].indexOf(',')).trim());
+            int xCoordinate = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(',') + 1, inputArray[i].indexOf(':')).trim());
+            int xAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(':') + 1, inputArray[i].indexOf('x')).trim());
+            int yAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('x') + 1).trim());
+
+            for (int xSize = 0; xSize < xAreaSize; xSize++) {
+                for (int ySize = 0; ySize < yAreaSize; ySize++) {
+                    fabGrid[xCoordinate + xSize][yCoordinate + ySize] = id;
+                }
+            }
+//            System.out.println(id + " " + yCoordinate + " " + xCoordinate + " " + xAreaSize + " " + yAreaSize);
+        }
+
+        for (int yRow = 0; yRow < 10; yRow++) {
+            for (int xRow = 0; xRow < 10; xRow++) {
+                System.out.print(fabGrid[xRow][yRow] + " ");
+            }
+            System.out.println("");
         }
 
     }
