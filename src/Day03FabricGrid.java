@@ -1407,32 +1407,45 @@ public class Day03FabricGrid {
         String inputTest2 = "#1 @ 1,3: 4x4\n" +
                 "#2 @ 3,1: 4x4\n" +
                 "#3 @ 5,5: 2x2";
+        String inputTest3 = "#160 @ 649,984: 28x14\n";
 
-        String inputArray[] = inputTest2.split("\n");
 
-        String fabGrid[][] = new String[10][10];
+        int claims = 0;
+        String inputArray[] = input.split("\n");
+        int matrixSize = 1000;
+        String fabGrid[][] = new String[matrixSize][matrixSize];
 
         for (int i = 0; i < inputArray.length; i++) {
             String id = inputArray[i].substring(inputArray[i].indexOf('#') + 1, inputArray[i].indexOf('@')).trim();
             int yCoordinate = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('@') + 1, inputArray[i].indexOf(',')).trim());
             int xCoordinate = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(',') + 1, inputArray[i].indexOf(':')).trim());
-            int xAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(':') + 1, inputArray[i].indexOf('x')).trim());
-            int yAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('x') + 1).trim());
+            int yAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf(':') + 1, inputArray[i].indexOf('x')).trim());
+            int xAreaSize = Integer.parseInt(inputArray[i].substring(inputArray[i].indexOf('x') + 1).trim());
 
             for (int xSize = 0; xSize < xAreaSize; xSize++) {
                 for (int ySize = 0; ySize < yAreaSize; ySize++) {
-                    fabGrid[xCoordinate + xSize][yCoordinate + ySize] = id;
+                    if (fabGrid[xCoordinate + xSize][yCoordinate + ySize] == null) {
+                        fabGrid[xCoordinate + xSize][yCoordinate + ySize] = id;
+//                        System.out.println(id);
+                    } else {
+                        fabGrid[xCoordinate + xSize][yCoordinate + ySize] = "X";
+                    }
                 }
             }
 //            System.out.println(id + " " + yCoordinate + " " + xCoordinate + " " + xAreaSize + " " + yAreaSize);
         }
 
-        for (int yRow = 0; yRow < 10; yRow++) {
-            for (int xRow = 0; xRow < 10; xRow++) {
-                System.out.print(fabGrid[xRow][yRow] + " ");
+        for (int yRow = 0; yRow < fabGrid.length; yRow++) {
+            for (int xRow = 0; xRow < fabGrid[0].length; xRow++) {
+                if (fabGrid[yRow][xRow] == null) {
+                    fabGrid[yRow][xRow] = "0";
+                } else if (fabGrid[yRow][xRow].equals("X")) {
+                    claims++;
+                }
+                System.out.print(fabGrid[yRow][xRow] + " ");
             }
             System.out.println("");
         }
-
+        System.out.println(claims);
     }
 }
