@@ -1430,7 +1430,11 @@ public class Day03part2FabricGridWithoutOverlap {
                 for (int ySize = 0; ySize < yAreaSize; ySize++) {
                     if (fabGrid[xCoordinate + xSize][yCoordinate + ySize] == null) {
                         fabGrid[xCoordinate + xSize][yCoordinate + ySize] = id;
-//                        System.out.println(id);
+//                                       "#129 @ 717,47: 14x24\n" +
+//                                       "#751 @ 719,51: 11x17\n" +
+                        if(((xCoordinate + xSize)>=51 && (xCoordinate + xSize)<68) && ((yCoordinate + ySize)>=719 && (yCoordinate + ySize)<730)) {
+                            System.out.println(id);
+                        }
                     } else {
                         if (!(fabGrid[xCoordinate + xSize][yCoordinate + ySize] == "X")) {
                             overlapingIDs.add(Integer.parseInt(fabGrid[xCoordinate + xSize][yCoordinate + ySize]));
