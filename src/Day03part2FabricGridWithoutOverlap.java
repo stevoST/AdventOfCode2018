@@ -1428,33 +1428,27 @@ public class Day03part2FabricGridWithoutOverlap {
 
             for (int xSize = 0; xSize < xAreaSize; xSize++) {
                 for (int ySize = 0; ySize < yAreaSize; ySize++) {
+                    //if there is no previous record in matrix
                     if (fabGrid[xCoordinate + xSize][yCoordinate + ySize] == null) {
                         fabGrid[xCoordinate + xSize][yCoordinate + ySize] = id;
-//                                       "#129 @ 717,47: 14x24\n" +
-//                                       "#751 @ 719,51: 11x17\n" +
-                        if(((xCoordinate + xSize)>=51 && (xCoordinate + xSize)<68) && ((yCoordinate + ySize)>=719 && (yCoordinate + ySize)<730)) {
-                            System.out.println(id);
-                        }
                     } else {
+                        // if there is already number
                         if (!(fabGrid[xCoordinate + xSize][yCoordinate + ySize] == "X")) {
                             overlapingIDs.add(Integer.parseInt(fabGrid[xCoordinate + xSize][yCoordinate + ySize]));
                             overlapingIDs.add(Integer.parseInt(id));
+                        } else {
+                            fabGrid[xCoordinate + xSize][yCoordinate + ySize] = "X";
                         }
-                        fabGrid[xCoordinate + xSize][yCoordinate + ySize] = "X";
                     }
                 }
             }
-//            System.out.println(id + " " + yCoordinate + " " + xCoordinate + " " + xAreaSize + " " + yAreaSize);
         }
 
         for (int i = 0; i < inputArray.length; i++) {
-            if (!overlapingIDs.contains(i+1)) {
-                System.out.println((i+1)+",");
+            if (!overlapingIDs.contains(i + 1)) {
+                System.out.println((i + 1) + ",");
             }
         }
-//                751,
-//                1009,
-//                1178, right answer
     }
 }
 
