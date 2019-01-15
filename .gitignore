@@ -1,4 +1,6 @@
 #intelliJ ignorefiles
 /out
 /.idea
+/src/out
+/src/.idea
 AdventOfCode2018.iml
