@@ -1146,5 +1146,13 @@ public class Day04BreakingIn {
                 "[1518-11-05 00:03] Guard #99 begins shift\n" +
                 "[1518-11-05 00:45] falls asleep\n" +
                 "[1518-11-05 00:55] wakes up";
+
+        String[] inputArray = inputTest.split("\n");
+
+        for(int line = 0; line < inputArray.length;line++){
+            if(inputArray[line].contains("#")){
+                System.out.println(line);
+            }
+        }
     }
 }
