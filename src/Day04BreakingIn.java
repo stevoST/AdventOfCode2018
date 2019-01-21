@@ -1147,13 +1147,15 @@ public class Day04BreakingIn {
                 "[1518-11-05 00:45] falls asleep\n" +
                 "[1518-11-05 00:55] wakes up";
 
-        String[] inputArray = inputTest.split("\n");
+        String[] inputArray = input.split("\n");
         String[][] guardIdTimeArray;
 
         for(int line = 0; line < inputArray.length;line++){
             if(inputArray[line].contains("#")){
                 String id;
-                id = inputArray[line].substring(inputArray[line].indexOf("#"),inputArray[line].indexOf(" "));
+                String temp = inputArray[line].substring(inputArray[line].indexOf("#"));
+                id = temp.substring(1,inputArray[line].indexOf(" "));
+                id = id.substring(0,id.indexOf(" "));
                 System.out.println(line + ": " + id);
             }
         }
