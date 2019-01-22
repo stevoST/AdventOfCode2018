@@ -1,6 +1,9 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Day04BreakingIn {
     public static void main(String[] args) {
-        String input ="[1518-05-11 00:47] wakes up\n" +
+        String input = "[1518-05-11 00:47] wakes up\n" +
                 "[1518-07-13 00:59] wakes up\n" +
                 "[1518-06-16 00:49] falls asleep\n" +
                 "[1518-08-17 00:01] Guard #3529 begins shift\n" +
@@ -1149,15 +1152,22 @@ public class Day04BreakingIn {
 
         String[] inputArray = input.split("\n");
         String[][] guardIdTimeArray;
+        String regex = "\\d";
 
-        for(int line = 0; line < inputArray.length;line++){
-            if(inputArray[line].contains("#")){
-                String id;
-                String temp = inputArray[line].substring(inputArray[line].indexOf("#"));
-                id = temp.substring(1,inputArray[line].indexOf(" "));
-                id = id.substring(0,id.indexOf(" "));
-                System.out.println(line + ": " + id);
-            }
+        Pattern pattern = Pattern.compile(regex);
+        Matcher m = pattern.matcher(inputArray[3]);
+
+//        for(int line = 0; line < inputArray.length;line++){
+//            if(inputArray[line].contains("#")){
+//                String id;
+//                String temp = inputArray[line].substring(inputArray[line].indexOf("#"));
+//                id = temp.substring(1,inputArray[line].indexOf(" "));
+//                id = id.substring(0,id.indexOf(" "));
+//                System.out.println(line + ": " + id);
+//            }
+//        }
+        if (m.find()) {
+            System.out.println(m.group(0));
         }
     }
 }
