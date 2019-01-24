@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1151,23 +1152,25 @@ public class Day04BreakingIn {
                 "[1518-11-05 00:55] wakes up";
 
         String[] inputArray = input.split("\n");
-        String[][] guardIdTimeArray;
-        String regex = "\\d";
 
+        String regex = "#\\d+";
         Pattern pattern = Pattern.compile(regex);
-        Matcher m = pattern.matcher(inputArray[3]);
 
-//        for(int line = 0; line < inputArray.length;line++){
-//            if(inputArray[line].contains("#")){
-//                String id;
-//                String temp = inputArray[line].substring(inputArray[line].indexOf("#"));
-//                id = temp.substring(1,inputArray[line].indexOf(" "));
-//                id = id.substring(0,id.indexOf(" "));
-//                System.out.println(line + ": " + id);
-//            }
-//        }
-        if (m.find()) {
-            System.out.println(m.group(0));
+        Arrays.sort(inputArray);
+
+        for (int line = 0; line < inputArray.length; line++) {
+        Matcher m = pattern.matcher(inputArray[line]);
+            if (inputArray[line].contains("#")) {
+                String id;
+                String temp = inputArray[line].substring(inputArray[line].indexOf("#"));
+                id = temp.substring(1, inputArray[line].indexOf(" "));
+                id = id.substring(0, id.indexOf(" "));
+                System.out.print(line + ": " + id);
+            }
+            if (m.find()) {
+                System.out.println(m.group(0));
+            }
         }
+
     }
 }
