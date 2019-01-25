@@ -1,4 +1,7 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1153,22 +1156,19 @@ public class Day04BreakingIn {
 
         String[] inputArray = input.split("\n");
 
-        String regex = "#\\d+";
+        Map<Integer, int[]> klobasa = new HashMap<>();
+
+        String regex = "(#\\d+)(:\\d+)";
+//        String regexTime = ":\\d+";
         Pattern pattern = Pattern.compile(regex);
 
         Arrays.sort(inputArray);
 
         for (int line = 0; line < inputArray.length; line++) {
         Matcher m = pattern.matcher(inputArray[line]);
-            if (inputArray[line].contains("#")) {
-                String id;
-                String temp = inputArray[line].substring(inputArray[line].indexOf("#"));
-                id = temp.substring(1, inputArray[line].indexOf(" "));
-                id = id.substring(0, id.indexOf(" "));
-                System.out.print(line + ": " + id);
-            }
             if (m.find()) {
-                System.out.println(m.group(0));
+//                klobasa.put(id,pole)
+                System.out.println(m.group(0).replace("#",""));
             }
         }
 
