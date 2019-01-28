@@ -1158,9 +1158,10 @@ public class Day04BreakingIn {
 
         Map<Integer, int[]> klobasa = new HashMap<>();
 
-        String regex = "(#\\d+)(:\\d+)";
-//        String regexTime = ":\\d+";
-        Pattern pattern = Pattern.compile(regex);
+        String regexID = "(#\\d+)(:\\d+)";
+//        String regexTime = "";
+        Pattern pattern = Pattern.compile(regexID);
+        int[] guardSchedule = new int[59];
 
         Arrays.sort(inputArray);
 
@@ -1168,9 +1169,14 @@ public class Day04BreakingIn {
         Matcher m = pattern.matcher(inputArray[line]);
             if (m.find()) {
 //                klobasa.put(id,pole)
-                System.out.println(m.group(0).replace("#",""));
+                System.out.println(m.group(1).replace("#",""));
+            }
+            if (inputArray[line].contains("wakes up")){
+//                String wakeUpTime = m.group(1);
             }
         }
+        System.out.println("wee");
+
 
     }
 }
